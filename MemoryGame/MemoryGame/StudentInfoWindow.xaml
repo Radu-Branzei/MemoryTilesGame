@@ -1,0 +1,90 @@
+﻿<Window x:Class="MemoryGame.StudentInfoWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MemoryGame"
+        mc:Ignorable="d"
+        Title="StudentInfoWindow" Height="200" Width="400"
+        Background="Transparent" AllowsTransparency="True"
+        WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen"
+        MouseDown="Window_MouseDown">
+    <Grid>
+        <Border CornerRadius="30"
+                BorderBrush="#138ED6" BorderThickness="3">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0, 0" EndPoint="1, 1">
+                    <GradientStop Color="#00BDFF" Offset="0"/>
+                    <GradientStop Color="#1386AF" Offset="0.3"/>
+                    <GradientStop Color="#084F69" Offset="0.7"/>
+                    <GradientStop Color="#0B0D6A" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+        </Border>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="330"/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="20"/>
+            </Grid.ColumnDefinitions>
+
+            <Button x:Name="buttonMinimize"
+                    Content="-" Foreground="White"  Cursor="Hand"
+                    Margin="2, 10, 0, 2"
+                    Grid.Column="1" Click="buttonMinimize_Click">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="#191E8E"></Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#1FC4D2"></Setter>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Width="18" Height="18" CornerRadius="8"
+                                Background="{TemplateBinding Background}">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"></ContentPresenter>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button x:Name="buttonClose"
+                    Content="X" Foreground="White"  Cursor="Hand"
+                    Margin="2, 10, 0, 2"
+                    Grid.Column="2" Click="buttonClose_Click">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="#D21F52"></Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FF3E00"></Setter>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Width="18" Height="18" CornerRadius="8"
+                                Background="{TemplateBinding Background}">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"></ContentPresenter>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <TextBlock TextWrapping="Wrap" Text="Project by:" Margin="142,1,3,99" Foreground="White" FontFamily="Century Gothic" FontSize="22" FontWeight="Bold" Grid.ColumnSpan="4" Grid.Row="1"/>
+            <TextBlock HorizontalAlignment="Left" Margin="93,48,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Name: Branzei Andrei Radu" VerticalAlignment="Top" Height="46" Width="217" FontStyle="Italic" Foreground="White" FontFamily="Century Gothic" FontSize="16"/>
+            <TextBlock HorizontalAlignment="Left" Margin="91,72,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Group: 10LF211" VerticalAlignment="Top" Height="63" Width="183" FontStyle="Italic" FontSize="16" Foreground="White" FontFamily="Century Gothic"/>
+            <TextBlock HorizontalAlignment="Left" Margin="91,96,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Specialization: INFO" VerticalAlignment="Top" Height="33" Width="155" FontStyle="Italic" Foreground="White" FontSize="16" FontFamily="Century Gothic"/>
+        </Grid>
+    </Grid>
+</Window>

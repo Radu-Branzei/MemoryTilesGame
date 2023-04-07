@@ -1,0 +1,115 @@
+﻿<Window x:Class="MemoryGame.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MemoryGame"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800"
+        Background="Transparent" AllowsTransparency="True"
+        WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen"
+        MouseDown="Window_MouseDown">
+    <Window.Resources>
+        <Style x:Key="myHeaderStyle" TargetType="{x:Type GridViewColumnHeader}">
+            <Setter Property="Visibility" Value="Collapsed" />
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Border CornerRadius="30"
+                BorderBrush="#911599" BorderThickness="5">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0, 0" EndPoint="1, 1">
+                    <GradientStop Color="#E11BCF" Offset="0"/>
+                    <GradientStop Color="#9F1292" Offset="0.4"/>
+                    <GradientStop Color="#7515B0" Offset="0.7"/>
+                    <GradientStop Color="#161B80" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+        </Border>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="330"/>
+                <ColumnDefinition Width="390"/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="24"/>
+            </Grid.ColumnDefinitions>
+
+            <Button x:Name="buttonMinimize"
+                    Content="-" Foreground="White"  Cursor="Hand"
+                    Margin="2, 10, 0, 2"
+                    Grid.Column="2" Click="buttonMinimize_Click">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="#191E8E"></Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#1FC4D2"></Setter>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Width="18" Height="18" CornerRadius="8"
+                                Background="{TemplateBinding Background}">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"></ContentPresenter>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button x:Name="buttonClose"
+                    Content="X" Foreground="White"  Cursor="Hand"
+                    Margin="2, 10, 0, 2"
+                    Grid.Column="3" Click="buttonClose_Click">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="#D21F52"></Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FF3E00"></Setter>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Width="18" Height="18" CornerRadius="8"
+                                Background="{TemplateBinding Background}">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"></ContentPresenter>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
+            <TextBlock HorizontalAlignment="Left" Margin="80,15,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Height="39" Width="180" TextAlignment="Center" FontFamily="Century Gothic" FontSize="24" FontWeight="Bold" Foreground="White"><Run Language="en-gb" Text="LOG IN"/></TextBlock>
+            <Ellipse Grid.Column="1" Margin="93,20,44,180" Grid.Row="1" Height="220" Width="250">
+                <Ellipse.Fill>
+                    <ImageBrush x:Name="AvatarImg" ImageSource="C:\Users\rbr72\OneDrive\Desktop\Images\image0.jpg"/>
+                </Ellipse.Fill>
+            </Ellipse>
+            <Button x:Name="PlayButton" Cursor="Hand" Content="Play" Margin="55,271,185,103" Grid.Row="1" Grid.Column="1" Click="PlayButton_Click" Background="#FFD976E3" FontFamily="Cascadia Code" FontSize="20" FontWeight="Bold" Foreground="White" Width="143" Height="46" BorderBrush="White" BorderThickness="3,3,3,3"/>
+            <Button x:Name="CancelButton" Cursor="Hand" Content="Cancel" Margin="220,271,28,103" Grid.Row="1" Grid.Column="1" Click="CancelButton_Click" Background="#FFD976E3" FontFamily="Cascadia Code" FontSize="20" FontWeight="Bold" Foreground="White" Width="143" Height="46" BorderBrush="White" BorderThickness="3,3,3,3"/>
+            <Button x:Name="NewUserButton" Cursor="Hand" Content="New User" Margin="55,338,182,36" Grid.Row="1" Grid.Column="1" Click="NewUserButton_Click" Background="#FFD976E3" FontFamily="Cascadia Code" FontSize="20" FontWeight="Bold" Foreground="White" Width="143" Height="46" BorderBrush="White" BorderThickness="3,3,3,3"/>
+            <Button x:Name="DeleteUserButton" Cursor="Hand" Content="Delete User" Margin="219,338,28,36" Grid.Row="1" Grid.Column="1" Click="DeleteUserButton_Click" Background="#FFD976E3" FontFamily="Cascadia Code" FontSize="20" FontWeight="Bold" Foreground="White" Width="143" Height="46" BorderBrush="White" BorderThickness="3,3,3,3"/>
+            <ListView Name="UsersListView" Margin="51,64,48,45" BorderThickness="5"
+                      SelectionMode="Single" ItemsSource="{Binding Users}"
+                      SelectedItem="{Binding SelectedItem}" SelectionChanged="UsersListView_SelectionChanged"
+                      Grid.Row="1" Grid.Column="0" Background="#FFEF00FF" BorderBrush="White" Foreground="White" FontFamily="Cascadia Code" FontSize="16">
+                <ListView.View>
+                    <GridView ColumnHeaderContainerStyle="{StaticResource myHeaderStyle}">
+                        <GridView.Columns>
+                            <GridViewColumn Header="Active Users" Width="213" DisplayMemberBinding="{Binding Name}"/>
+                        </GridView.Columns>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
+    </Grid>
+</Window>
